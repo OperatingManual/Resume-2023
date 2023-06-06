@@ -46,8 +46,8 @@ function Disable-SSDOUserAccount {
         for ($i = 0; $i -lt $length; $i++) {
             $password += $chars[(Get-Random -Minimum 0 -Maximum $chars.Length)]
         }
-        $encryptedPassword = ConvertFrom-SecureString -String $password
-        $securePassword = ConvertTo-SecureString -String $encryptedPassword
+        $securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+
         # Disable user account
         Disable-ADAccount -Identity $Username
 
